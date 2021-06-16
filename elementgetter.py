@@ -24,7 +24,7 @@ class ElementGetter():
 
         self.save_url_content_to_temp_file(url)
         self.get_elements_from_temp_file()
-        self.add_elements_to_results_file()
+        self.append_elements_to_results_file()
 
         self.lock.release()
 
@@ -45,15 +45,32 @@ class ElementGetter():
             soup = BeautifulSoup(f.read(), "html.parser")
             self.elements = soup.find_all(self.element_to_search)
 
-    def add_elements_to_results_file(self):
+    def append_elements_to_results_file(self):
         with open(self.results_file, "a") as f:
-            for el in self.elements:
-                try:
-                    element = el.getText()
-                    f.write(element + "\n\n")
-                except:
-                    pass
-            f.write("======= END OF URL ========\n")
+
+            if self.element_to_search == "p":
+                for el in self.elements:
+                    self.append_paragraph(f, el)
+
+                f.write("======= END OF URL =======\n")
+
+            if self.element_to_search == "a":
+                for el in self.elements:
+                    self.append_link(f, el)
+
+                f.write("======= END OF URL =======\n")
+
+    def append_paragraph(self, f, el):
+        try:
+            f.write(f"{el.getText()} \n\n")
+        except:
+            pass
+
+    def append_link(self, f, el):
+        try:
+            f.write(f"{el.getText()} - LINK: {el.attrs['href']} \n\n")
+        except:
+            pass
 
     def clear_files_content(self):
         print("Clearing files")

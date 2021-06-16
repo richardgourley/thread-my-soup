@@ -8,8 +8,8 @@ element_to_search = url_selector.ask_user_for_element()
 
 element_getter = ElementGetter(urls, element_to_search)
 
+element_getter.clear_file_content_from_previous()
 element_getter.start_threads()
-element_getter.clear_files_content()
 
 print(f"The results can be found in the file: {element_getter.results_file}")
 

@@ -2,13 +2,13 @@ from threading import Thread, Lock
 import requests
 from bs4 import BeautifulSoup
 
-class ParagraphGetter():
+class ElementGetter():
     def __init__(self, urls, element_to_search):
         self.urls = urls
         self.element_to_search = element_to_search
         self.results_file = "results.txt"
         self.lock = Lock()
-        self.paragraphs = None
+        self.elements = None
 
     def create_start_threads(self):
         threads = [Thread(target=self.get_paragraphs, args=(url,)) for url in self.urls]
@@ -19,12 +19,12 @@ class ParagraphGetter():
         for thread in threads:
             thread.join()
 
-    def get_paragraphs(self, url):
+    def get_elements(self, url):
         self.lock.acquire()
 
         self.save_url_content_to_temp_file(url)
-        self.get_paragraphs_from_temp_file()
-        self.add_paragraphs_to_results_file()
+        self.get_elements_from_temp_file()
+        self.add_elements_to_results_file()
 
         self.lock.release()
 
@@ -34,7 +34,7 @@ class ParagraphGetter():
                 r = requests.get(url)
                 if r.status_code == 200:
                     print(f"Successfully opened: {url}")
-                    print("Retreiving paragraphs")
+                    print("Retreiving elements")
                 for chunk in r.iter_content(chunk_size=10000):
                     f.write(chunk)
             except:
@@ -43,11 +43,11 @@ class ParagraphGetter():
     def get_elements_from_temp_file(self):
         with open('temp.txt', 'r') as f:
             soup = BeautifulSoup(f.read(), "html.parser")
-            self.paragraphs = soup.find_all(self.element_to_search)
+            self.elements = soup.find_all(self.element_to_search)
 
-    def add_paragraphs_to_results_file(self):
+    def add_elements_to_results_file(self):
         with open(self.results_file, "a") as f:
-            for para in self.paragraphs:
+            for para in self.elements:
                 try:
                     para_text = para.getText()
                     f.write(para_text + "\n\n")

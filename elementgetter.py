@@ -72,5 +72,9 @@ class ElementGetter():
         except:
             pass
 
-    def clear_files_content(self):
-        print("Clearing files")
+    def clear_file_content_from_previous(self):
+        with open('results.txt', 'w') as f:
+            f.write("")
+        with open('temp.txt', 'w') as f:
+            f.write("")
+

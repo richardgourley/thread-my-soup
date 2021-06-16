@@ -3,8 +3,9 @@ import requests
 from bs4 import BeautifulSoup
 
 class ParagraphGetter():
-    def __init__(self, urls):
+    def __init__(self, urls, element_to_search):
         self.urls = urls
+        self.element_to_search = element_to_search
         self.results_file = "results.txt"
         self.lock = Lock()
         self.paragraphs = None
@@ -39,10 +40,10 @@ class ParagraphGetter():
             except:
                 print(f"Could not open the url: {url}")
 
-    def get_paragraphs_from_temp_file(self):
+    def get_elements_from_temp_file(self):
         with open('temp.txt', 'r') as f:
             soup = BeautifulSoup(f.read(), "html.parser")
-            self.paragraphs = soup.find_all('p')
+            self.paragraphs = soup.find_all(self.element_to_search)
 
     def add_paragraphs_to_results_file(self):
         with open(self.results_file, "a") as f:

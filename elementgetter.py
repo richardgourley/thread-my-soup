@@ -10,8 +10,8 @@ class ElementGetter():
         self.lock = Lock()
         self.elements = None
 
-    def create_start_threads(self):
-        threads = [Thread(target=self.get_paragraphs, args=(url,)) for url in self.urls]
+    def start_threads(self):
+        threads = [Thread(target=self.get_elements, args=(url,)) for url in self.urls]
 
         for thread in threads:
             thread.start()
@@ -47,10 +47,10 @@ class ElementGetter():
 
     def add_elements_to_results_file(self):
         with open(self.results_file, "a") as f:
-            for para in self.elements:
+            for el in self.elements:
                 try:
-                    para_text = para.getText()
-                    f.write(para_text + "\n\n")
+                    element = el.getText()
+                    f.write(element + "\n\n")
                 except:
                     pass
             f.write("======= END OF URL ========\n")

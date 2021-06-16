@@ -1,5 +1,5 @@
 from urlselector import UrlSelector
-from paragraphgetter import ParagraphGetter
+from elementgetter import ElementGetter
 
 url_selector = UrlSelector()
 
@@ -7,12 +7,12 @@ url_selector = UrlSelector()
 urls = url_selector.ask_user_for_urls()
 element_to_search = url_selector.ask_user_element_to_search()
 
-paragraph_getter = ParagraphGetter(urls, element_to_search)
+element_getter = ElementGetter(urls, element_to_search)
 
-paragraph_getter.create_start_threads()
-paragraph_getter.clear_files_content()
+element_getter.create_start_threads()
+element_getter.clear_files_content()
 
-print(f"The results can be found in the file: {paragraph_getter.results_file}")
+print(f"The results can be found in the file: {element_getter.results_file}")
 
 
 

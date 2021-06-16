@@ -3,7 +3,6 @@ from elementgetter import ElementGetter
 
 url_selector = UrlSelector()
 
-# get url selection AND element to search from the user
 urls = url_selector.ask_user_for_urls()
 element_to_search = url_selector.ask_user_for_element()
 

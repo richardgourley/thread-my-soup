@@ -1,4 +1,4 @@
-class UrlSelector():
+class SearchSetUp():
     def __init__(self):
         pass
 

@@ -2,13 +2,13 @@ from run import run
 
 def print_arguments_incorrect_message():
 	print("Please run 'python3 threadmysoup.py' + 1 argument:")
-	print("'python3 threadmysoup.py p' to get paragraphs")
-	print("'python3 threadmysoup.py a' to get links")
+	print("'python3 threadmysoup.py p' + 1 of these arguments:")
+	print("'h1','h2','h3','h4','h5','p','ul','li','span','title'")
 
 if __name__ == "__main__":
 	import sys
 
-	accepted_arguments = ['p', 'a']
+	accepted_arguments = ('h1','h2','h3','h4','h5','p','ul','li','span','title',)
 
 	### sys.argv is a list of params passed by user 'python3 threadmysoup.py p' etc.
 	### 1st item is always file name --> ['threadmysoup.py'...other args...]

@@ -6,6 +6,8 @@ class ElementRetriever():
     def __init__(self, urls, element_to_search):
         self.urls = urls
         self.element_to_search = element_to_search
+        self.text_elements = ('h1','h2','h3','h4','h5','p','ul','li','span','title',)
+        self.href_elements = ('a',)
         self.results_file = "results.txt"
         self.lock = Lock()
         # Assigned in method 'get_elements_from_temp_file'
@@ -49,19 +51,19 @@ class ElementRetriever():
     def append_elements_to_results_file(self):
         with open(self.results_file, "a") as file:
 
-            if self.element_to_search == "p":
+            if self.element_to_search in self.text_elements:
                 for element in self.elements:
-                    self.append_paragraph(file, element)
+                    self.append_text(file, element)
 
                 file.write("======= END OF URL =======\n")
 
-            if self.element_to_search == "a":
+            if self.element_to_search in self.href_elements:
                 for element in self.elements:
                     self.append_link(file, element)
 
                 file.write("======= END OF URL =======\n")
 
-    def append_paragraph(self, file, element):
+    def append_text(self, file, element):
         try:
             file.write(f"{element.getText()} \n\n")
         except:

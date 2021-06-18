@@ -1,7 +1,9 @@
 # Thread My Soup
 A tool that utilizes sys.argsv, the requests library, threading and Beautiful Soup to retrieve elements from a web page. 
 
-It can be used to retrieve and check text and links from your own website pages, for these elements: a, h1, h2, h3, h4, h5, p, ul, li, span or title.
+It can be used to retrieve and check text and links from your own website pages, for these elements: 
+
+a, h1, h2, h3, h4, h5, p, ul, li, span or title.
 
 You can retrieve elements from any number of url pages you like every time the program is run.
 

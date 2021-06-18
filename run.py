@@ -1,17 +1,17 @@
-from urlselector import UrlSelector
-from elementgetter import ElementGetter
+from searchsetup import SearchSetUp
+from elementretriever import ElementRetriever
 
-url_selector = UrlSelector()
+def run(element_to_search):
+	search_setup = SearchSetUp()
 
-urls = url_selector.ask_user_for_urls()
-element_to_search = url_selector.ask_user_for_element()
+	urls = search_setup.ask_user_for_urls()
 
-element_getter = ElementGetter(urls, element_to_search)
+	element_retriever = ElementRetriever(urls, element_to_search)
 
-element_getter.clear_file_content_from_previous()
-element_getter.start_threads()
+	element_retriever.clear_file_content_from_previous()
+	element_retriever.start_threads()
 
-print(f"The results can be found in the file: {element_getter.results_file}")
+	print(f"The results can be found in the file: {element_retriever.results_file}")
 
 
 

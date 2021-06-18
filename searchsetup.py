@@ -21,32 +21,3 @@ class SearchSetUp():
 
         return urls
 
-    def ask_user_for_element(self):
-        elements = ('p', 'a')
-        
-        element_to_search = ""
-
-        still_choosing_element = True
-
-        while still_choosing_element:
-            print("Which element in the page would you like to retrieve?")
-            print("Enter 'p' to retrieve paragraphs")
-            print("Enter 'a' to retrieve links")
-
-            element_to_search = input()
-            if element_to_search == "":
-                print("Sorry, element can't be blank.")
-                continue
-            if not element_to_search in elements:
-                print("Only enter 'p' for paragraphs, or 'a' for links.")
-                continue
-
-            still_choosing_element = False
-
-        return element_to_search
-
-
-
-
-    
-

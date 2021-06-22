@@ -39,5 +39,5 @@ python3 tests.py
 - Url content for each url saved in 'temp.txt', then elements retrieved and saved in 'results.txt'.
 - Uses a command line argument of the element you want to search.
 
-- Adaptable -> feel free to modify the program if you want to adapt it to include more complex arguments for BeautifulSoup such as finding all elements that match a class name or an id.
+- Adaptable -> modify the program if you want to adapt it to include more complex arguments for BeautifulSoup such as finding all elements that match a class name or an id.
 

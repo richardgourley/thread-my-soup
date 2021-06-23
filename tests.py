@@ -2,6 +2,7 @@ import unittest
 from elementretriever import ElementRetriever
 from searchsetup import SearchSetUp
 import threadmysoup
+from threading import Thread, Lock
 import os
 
 class UnitTest(unittest.TestCase):
@@ -29,13 +30,44 @@ class UnitTest(unittest.TestCase):
 	################
 	# ElementRetriever class tests
 	################
-	def test_example_1(self):
-		urls = ['testsite.com']
-		element_to_search = 'a'
-		self.assertTrue(len(urls) == 1)
-
+	## Methods
 	def test_element_retriever_has_urls(self):
 		self.assertTrue(len(self.element_retriever.urls) == 1)
+
+	def test_element_retriever_has_start_threads_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'start_threads'))
+
+	def test_element_retriever_has_get_elements_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'get_elements'))
+
+	def test_element_retriever_has_get_elements_from_temp_file_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'get_elements_from_temp_file'))
+
+	def test_element_retriever_has_save_url_content_to_temp_file_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'save_url_content_to_temp_file'))
+
+	def test_element_retriever_has_get_elements_from_temp_file_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'get_elements_from_temp_file'))
+
+	def test_element_retriever_has_append_text_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'append_text'))
+
+	def test_element_retriever_has_clear_file_content_from_previous_method(self):
+		self.assertTrue(hasattr(self.element_retriever, 'clear_file_content_from_previous'))
+
+	## Attributes
+	def test_element_retriever_element_to_search_is_a(self):
+		self.assertTrue(self.element_retriever.element_to_search == 'a')
+
+	def test_element_retriever_text_elements(self):
+		text_elements = ('h1','h2','h3','h4','h5','p','ul','li','span','title',)
+		self.assertEqual(self.element_retriever.text_elements, text_elements)
+
+	def test_element_retriever_has_results_file(self):
+		self.assertEqual(self.element_retriever.results_file, 'results.txt')
+
+	def test_element_retriever_has_lock(self):
+		self.assertTrue(hasattr(self.element_retriever, 'lock'))
 
 if __name__ == "__main__":
 	unittest.main()

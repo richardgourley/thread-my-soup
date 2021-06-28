@@ -88,7 +88,10 @@ class UnitTest(unittest.TestCase):
         self.assertFalse(returned_value)
 
     def test_get_elements_from_temp_file_returns_true(self):
+        file = open('temp.txt', 'w')
+        file.write('<p>Hello</p>')
         returned_value = self.element_retriever.get_elements_from_temp_file()
+        file.close()
         self.assertTrue(returned_value)
 
     def test_append_elements_to_results_file(self):
@@ -141,6 +144,13 @@ class UnitTest(unittest.TestCase):
     def test_clear_file_content_from_previous_returns_true(self):
         returned_value = self.element_retriever.clear_file_content_from_previous()
         self.assertTrue(returned_value)
+
+    def tearDown(self):
+        try:
+            os.remove('temp.txt')
+            os.remove('results.txt')
+        except:
+            pass
 
 if __name__ == "__main__":
     unittest.main()

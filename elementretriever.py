@@ -40,8 +40,10 @@ class ElementRetriever():
                     print("Retreiving elements")
                 for chunk in r.iter_content(chunk_size=10000):
                     file.write(chunk)
+                return True
             except:
                 print(f"Could not open the url: {url}")
+                return False
 
     def get_elements_from_temp_file(self):
         with open('temp.txt', 'r') as file:

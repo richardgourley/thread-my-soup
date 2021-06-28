@@ -17,14 +17,14 @@ class UnitTest(unittest.TestCase):
 	################
 	# SearchSetUp class tests
 	################
-	def test_search_setup_has_ask_user_for_urls(self):
+	def test_has_ask_user_for_urls_method(self):
 		self.assertTrue(hasattr(self.search_setup, 'ask_user_for_urls'))
 
-	def test_SearchSetUp_class_has_method_in_dict(self):
+	def test_has_ask_urser_for_urls_method_in_dict(self):
 		class_dict = SearchSetUp.__dict__
 		self.assertTrue('ask_user_for_urls' in class_dict)
 
-	def test_search_setup_ask_user_for_urls_returns_list(self):
+	def test_ask_user_for_urls_returns_list(self):
 		urls = self.search_setup.ask_user_for_urls()
 		self.assertTrue(isinstance(urls, list))
 
@@ -32,49 +32,49 @@ class UnitTest(unittest.TestCase):
 	# ElementRetriever class tests
 	################
 	## Methods
-	def test_element_retriever_has_urls(self):
+	def test_urls_property_has_length_1(self):
 		self.assertTrue(len(self.element_retriever.urls) == 1)
 
-	def test_element_retriever_has_start_threads_method(self):
+	def test_has_start_threads_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'start_threads'))
 
-	def test_element_retriever_has_get_elements_method(self):
+	def test_has_get_elements_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'get_elements'))
 
-	def test_element_retriever_has_get_elements_from_temp_file_method(self):
+	def test_has_get_elements_from_temp_file_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'get_elements_from_temp_file'))
 
-	def test_element_retriever_has_save_url_content_to_temp_file_method(self):
+	def test_has_save_url_content_to_temp_file_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'save_url_content_to_temp_file'))
 
-	def test_element_retriever_has_get_elements_from_temp_file_method(self):
+	def test_has_get_elements_from_temp_file_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'get_elements_from_temp_file'))
 
-	def test_element_retriever_has_append_text_method(self):
+	def test_has_append_text_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'append_text'))
 
-	def test_element_retriever_has_clear_file_content_from_previous_method(self):
+	def test_has_clear_file_content_from_previous_method(self):
 		self.assertTrue(hasattr(self.element_retriever, 'clear_file_content_from_previous'))
 
 	## Attributes
-	def test_element_retriever_element_to_search_is_a(self):
+	def test_element_to_search_is_a(self):
 		self.assertTrue(self.element_retriever.element_to_search == 'a')
 
-	def test_element_retriever_text_elements(self):
+	def test_text_elements(self):
 		text_elements = ('h1','h2','h3','h4','h5','p','ul','li','span','title',)
 		self.assertEqual(self.element_retriever.text_elements, text_elements)
 
-	def test_element_retriever_has_results_file(self):
+	def test_has_results_file(self):
 		self.assertEqual(self.element_retriever.results_file, 'results.txt')
 
-	def test_element_retriever_has_lock(self):
+	def test_has_lock(self):
 		self.assertTrue(hasattr(self.element_retriever, 'lock'))
 
 	## ElementRetriever Methods
-	def test_element_retriever_save_url_content_to_temp_file_returns_true(self):
+	def test_save_url_content_to_temp_file_returns_true(self):
 		urls = ['a string not a url']
 
-	def test_element_retriever_save_url_content_to_temp_file_returns_true(self):
+	def test_save_url_content_to_temp_file_returns_true(self):
 		# specific instance of ElementRetriever created - valid url in urls
 		urls = ['https://www.freecodecamp.org/']
 		element_to_search = 'a'
@@ -82,13 +82,25 @@ class UnitTest(unittest.TestCase):
 		returned_method = element_retriever.save_url_content_to_temp_file(urls[0])
 		self.assertTrue(returned_method)
 
-	def test_element_retriever_save_url_content_to_temp_file_returns_false(self):
+	def test_save_url_content_to_temp_file_returns_false(self):
 		# specific instance of ElementRetriever created - invalid url in urls
 		urls = ['a string not a url']
 		element_to_search = 'a'
 		element_retriever = ElementRetriever(urls, element_to_search)
 		returned_method = element_retriever.save_url_content_to_temp_file(urls[0])
 		self.assertFalse(returned_method)
+
+	def test_get_elements_from_temp_file_returns_true(self):
+		urls = ['']
+		element_to_search = 'a'
+		element_retriever = ElementRetriever(urls, element_to_search)
+		returned_method = element_retriever.get_elements_from_temp_file()
+		self.assertTrue(returned_method)
+
+	def test_get_elements_from_temp_file_returns_false(self):
+		pass
+
+
 
 if __name__ == "__main__":
 	unittest.main()

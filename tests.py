@@ -8,6 +8,7 @@ import os
 class UnitTest(unittest.TestCase):
 	@classmethod
 	def setUp(self):
+		# General instances of classes setup
 		urls = ['testsite.com']
 		element_to_search = 'a'
 		self.element_retriever = ElementRetriever(urls, element_to_search)
@@ -68,6 +69,26 @@ class UnitTest(unittest.TestCase):
 
 	def test_element_retriever_has_lock(self):
 		self.assertTrue(hasattr(self.element_retriever, 'lock'))
+
+	## ElementRetriever Methods
+	def test_element_retriever_save_url_content_to_temp_file_returns_true(self):
+		urls = ['a string not a url']
+
+	def test_element_retriever_save_url_content_to_temp_file_returns_true(self):
+		# specific instance of ElementRetriever created - valid url in urls
+		urls = ['https://www.freecodecamp.org/']
+		element_to_search = 'a'
+		element_retriever = ElementRetriever(urls, element_to_search)
+		returned_method = element_retriever.save_url_content_to_temp_file(urls[0])
+		self.assertTrue(returned_method)
+
+	def test_element_retriever_save_url_content_to_temp_file_returns_false(self):
+		# specific instance of ElementRetriever created - invalid url in urls
+		urls = ['a string not a url']
+		element_to_search = 'a'
+		element_retriever = ElementRetriever(urls, element_to_search)
+		returned_method = element_retriever.save_url_content_to_temp_file(urls[0])
+		self.assertFalse(returned_method)
 
 if __name__ == "__main__":
 	unittest.main()

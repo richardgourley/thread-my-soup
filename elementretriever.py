@@ -36,7 +36,7 @@ class ElementRetriever():
             try:
                 r = requests.get(url)
                 if r.status_code == 200:
-                    print(f"Successfully opened: {url}")
+                    print(f"Successfully opened url: {url}")
                     print("Retreiving elements")
                 for chunk in r.iter_content(chunk_size=10000):
                     file.write(chunk)
@@ -46,9 +46,13 @@ class ElementRetriever():
                 return False
 
     def get_elements_from_temp_file(self):
-        with open('temp.txt', 'r') as file:
-            soup = BeautifulSoup(file.read(), "html.parser")
-            self.elements = soup.find_all(self.element_to_search)
+        try:
+            with open('temp.txt', 'r') as file:
+                soup = BeautifulSoup(file.read(), "html.parser")
+                self.elements = soup.find_all(self.element_to_search)
+                return True
+        except:
+            return False
 
     def append_elements_to_results_file(self):
         with open(self.results_file, "a") as file:

@@ -9,7 +9,7 @@ class UnitTest(unittest.TestCase):
     @classmethod
     def setUp(self):
         # General instances of classes setup
-        urls = ['testsite.com']
+        urls = ['']
         element_to_search = 'a'
         self.element_retriever = ElementRetriever(urls, element_to_search)
         self.search_setup = SearchSetUp()
@@ -92,17 +92,52 @@ class UnitTest(unittest.TestCase):
         self.assertTrue(returned_value)
 
     def test_append_elements_to_results_file(self):
+        # specific instance of ElementRetriever created
         urls = ['']
-        element_to_search = 'a'
+        element_to_search = 'p'
         element_retriever = ElementRetriever(urls, element_to_search)
         element_retriever.elements = ['<p>Hello world</p>']
         returned_value = element_retriever.append_elements_to_results_file()
         self.assertTrue(returned_value)
 
     def test_append_text_returns_true(self):
+        # specific instance of ElementRetriever created
+        urls = ['']
+        element_to_search = 'p'
+        element_retriever = ElementRetriever(urls, element_to_search)
+
+        with open('temp.txt', 'w') as temp_file:
+            temp_file.write("<p>Hello</p>")
+
+        element_retriever.get_elements_from_temp_file()
+        
+        results_file = open(element_retriever.results_file, 'w')
+
+        returned_value = element_retriever.append_text(results_file, element_retriever.elements[0])
+
+        results_file.close()
+
+        self.assertTrue(returned_value)
+
+    def test_append_link_returns_true(self):
+        # specific instance of ElementRetriever created
         urls = ['']
         element_to_search = 'a'
         element_retriever = ElementRetriever(urls, element_to_search)
+
+        with open('temp.txt', 'w') as temp_file:
+            temp_file.write('<a href="#">Hello</a>')
+
+        element_retriever.get_elements_from_temp_file()
+        
+        results_file = open(element_retriever.results_file, 'w')
+        
+        returned_value = element_retriever.append_link(results_file, element_retriever.elements[0])
+
+        results_file.close()
+
+        self.assertTrue(returned_value)
+
 
 if __name__ == "__main__":
     unittest.main()

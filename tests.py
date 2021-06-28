@@ -71,13 +71,13 @@ class UnitTest(unittest.TestCase):
         self.assertTrue(hasattr(self.element_retriever, 'lock'))
 
     ## ElementRetriever Methods
-    '''def test_save_url_content_to_temp_file_returns_true(self):
-                    # specific instance of ElementRetriever created - valid url in urls
-                    urls = ['https://www.freecodecamp.org/']
-                    element_to_search = 'a'
-                    element_retriever = ElementRetriever(urls, element_to_search)
-                    returned_value = element_retriever.save_url_content_to_temp_file(urls[0])
-                    self.assertTrue(returned_value)'''
+    def test_save_url_content_to_temp_file_returns_true(self):
+        # specific instance of ElementRetriever created - valid url in urls
+        urls = ['https://www.freecodecamp.org/']
+        element_to_search = 'a'
+        element_retriever = ElementRetriever(urls, element_to_search)
+        returned_value = element_retriever.save_url_content_to_temp_file(urls[0])
+        self.assertTrue(returned_value)
 
     def test_save_url_content_to_temp_file_returns_false(self):
         # specific instance of ElementRetriever created - invalid url in urls
@@ -138,6 +138,9 @@ class UnitTest(unittest.TestCase):
 
         self.assertTrue(returned_value)
 
+    def test_clear_file_content_from_previous_returns_true(self):
+        returned_value = self.element_retriever.clear_file_content_from_previous()
+        self.assertTrue(returned_value)
 
 if __name__ == "__main__":
     unittest.main()

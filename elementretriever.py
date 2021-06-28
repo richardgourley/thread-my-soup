@@ -55,35 +55,49 @@ class ElementRetriever():
             return False
 
     def append_elements_to_results_file(self):
-        with open(self.results_file, "a") as file:
+        try:
+            with open(self.results_file, "a") as file:
 
-            if self.element_to_search in self.text_elements:
-                for element in self.elements:
-                    self.append_text(file, element)
+                if self.element_to_search in self.text_elements:
+                    for element in self.elements:
+                        self.append_text(file, element)
 
-                file.write("======= END OF URL =======\n")
+                    file.write("======= END OF URL =======\n")
 
-            if self.element_to_search in self.href_elements:
-                for element in self.elements:
-                    self.append_link(file, element)
+                if self.element_to_search in self.href_elements:
+                    for element in self.elements:
+                        self.append_link(file, element)
 
-                file.write("======= END OF URL =======\n")
+                    file.write("======= END OF URL =======\n")
 
+            return True
+
+        except:
+            return False
+        
     def append_text(self, file, element):
         try:
             file.write(f"{element.getText()} \n\n")
+            return True
         except:
-            pass
+            return False
 
     def append_link(self, file, element):
         try:
             file.write(f"{element.getText()} - LINK: {element.attrs['href']} \n\n")
+            return True
         except:
-            pass
+            return False
 
     def clear_file_content_from_previous(self):
-        with open('results.txt', 'w') as file:
-            file.write("")
-        with open('temp.txt', 'w') as file:
-            file.write("")
+        try:
+            with open('results.txt', 'w') as file:
+                file.write("")
+            with open('temp.txt', 'w') as file:
+                file.write("")
+
+            return True
+            
+        except:
+            return False
 

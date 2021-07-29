@@ -72,8 +72,8 @@ class UnitTest(unittest.TestCase):
 
     ## ElementRetriever Methods
     def test_save_url_content_to_temp_file_returns_true(self):
-        # specific instance of ElementRetriever created - valid url in urls
-        urls = ['ADD YOUR WEBSITE URL HERE!']
+        # specific instance of ElementRetriever created - add valid urls to urls list
+        urls = ['ADD YOUR VALID WEBSITE URLS HERE!']
         element_to_search = 'a'
         element_retriever = ElementRetriever(urls, element_to_search)
         returned_value = element_retriever.save_url_content_to_temp_file(urls[0])

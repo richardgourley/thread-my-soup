@@ -1,7 +1,5 @@
 from classes.elementretriever import ElementRetriever
 
-element_retriever = ElementRetriever()
-
 class ThreadMySoupSetUp:
     def __init__(self):
         pass
@@ -57,12 +55,9 @@ class ThreadMySoupSetUp:
 
 thread_my_soup = ThreadMySoupSetUp()
 html_elements_to_find = thread_my_soup.get_command_line_html_element_args()
-
-print(html_elements_to_find)
-
 urls_to_search = thread_my_soup.ask_user_for_urls_to_search()
 
-print(urls_to_search)
-
-## Pass 'html_elements_to_find' and 'urls_to_search' to another class, that will perform 
-## ... the searches of html elements for us
+element_retriever = ElementRetriever(
+        html_elements_to_find,
+        urls_to_search
+    )

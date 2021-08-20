@@ -20,6 +20,8 @@ class ThreadMySoup:
 				for i in range(1, number_arguments):
 					print(sys.argv[i])
 
+				return sys.argv
+
 	def print_no_arguments_added(self):
 		print("You haven't added any arguments.")
 		print("Please run threadmysoup.py + 1 or more elements to search separated by a space.")
@@ -27,4 +29,4 @@ class ThreadMySoup:
 
 
 threadmysoup = ThreadMySoup()
-threadmysoup.get_command_line_args()
+print(threadmysoup.get_command_line_args())

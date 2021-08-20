@@ -48,7 +48,7 @@ class ThreadMySoupSetUp:
         return urls
 
     def print_no_command_line_arguments_added(self):
-        print("You haven't added any arguments.")
+        print("You haven't added any html element arguments!")
         print("Please run threadmysoup.py + 1 or more elements to search separated by a space.")
         print("EXAMPLE: 'threadmysoup.py h1 h2 h3 p a'")
 

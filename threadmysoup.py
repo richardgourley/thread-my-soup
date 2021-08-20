@@ -1,7 +1,6 @@
-from classes.class1 import Class1
+from classes.elementretriever import ElementRetriever
 
-class_1 = Class1()
-class_1.say_hello()
+element_retriever = ElementRetriever()
 
 class ThreadMySoupSetUp:
     def __init__(self):

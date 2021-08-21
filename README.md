@@ -28,11 +28,11 @@ The idea of the tool is its quicker to get all elements that manually go through
 
 ### Menu Page
 
-![menupage](https://github.com/richardgourley/thread-my-soup/blob/master/screenshots/threadmysoupmenu.png)
+![menupage](https://github.com/richardgourley/thread-my-soup/blob/main/screenshots/threadmysoupmenu.png)
 
 ### Results Page
 
-![resultspage](https://github.com/richardgourley/thread-my-soup/blob/master/screenshots/threadmysoupresults.png)
+![resultspage](https://github.com/richardgourley/thread-my-soup/blob/main/screenshots/threadmysoupresults.png)
 
 ## GETTING STARTED
 Navigate to the main directory 'thread-my-soup'.

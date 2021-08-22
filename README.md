@@ -48,3 +48,10 @@ The program then prompts you to enter as many of your website urls you would lik
 
 A temp file is created using 'requests' to store the source code of each url. The temp file is then converted to a BeautifulSoup class, and the html tags you want to search are then found and appended to a file called 'results.txt' in the same folder.
 
+## TESTING
+To run the tests in the 'tests' directory, from the main directory where 'threadmysoup.py' lives, run:
+```
+python3 -m unittest
+```
+
+

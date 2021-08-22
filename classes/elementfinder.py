@@ -8,9 +8,9 @@ class ElementFinder:
         self.urls_to_search = urls_to_search
         self.lock = Lock()
 
+    def start_threads(self):
         self.clear_results_file_from_previous_search()
 
-    def start_threads(self):
         # A thread started for each url in 'self.urls_to_search'
         threads = [Thread(target=self.find_html_elements_and_save_results, args=(url,)) for url in self.urls_to_search]
 

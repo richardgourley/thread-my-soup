@@ -1,30 +1,28 @@
 from classes.elementfinder import ElementFinder
+import tests
 
 class ThreadMySoupSetUp:
 	def __init__(self):
 		pass
 
 	def get_command_line_html_element_args(self):
-		if __name__ == "__main__":
-			import sys
+		command_line_args = list(sys.argv)
 
-			command_line_args = list(sys.argv)
+		# Remove first arg -> because first arg is always the current file name
+		command_line_args.pop(0)
 
-			# Remove first arg -> because first arg is always the current file name
-			command_line_args.pop(0)
+		number_arguments = len(command_line_args)
 
-			number_arguments = len(command_line_args)
+		if number_arguments == 0:
+			self.print_no_command_line_arguments_added()
+			quit()
 
-			if number_arguments == 0:
-				self.print_no_command_line_arguments_added()
-				quit()
+		if number_arguments > 0:
+			print("You have chosen to search these elements:")
+			for arg in command_line_args:
+				print(arg)
 
-			if number_arguments > 0:
-				print("You have chosen to search these elements:")
-				for arg in command_line_args:
-					print(arg)
-
-				return command_line_args
+			return command_line_args
 
 	def ask_user_for_urls_to_search(self):
 		urls = []
@@ -50,14 +48,16 @@ class ThreadMySoupSetUp:
 		print("Please run threadmysoup.py + 1 or more elements to search separated by a space.")
 		print("EXAMPLE: 'threadmysoup.py h1 h2 h3 p a'")
 
+if __name__ == "__main__":
+	thread_my_soup = ThreadMySoupSetUp()
+	
+	html_elements_to_find = thread_my_soup.get_command_line_html_element_args()
+	urls_to_search = thread_my_soup.ask_user_for_urls_to_search()
 
-thread_my_soup = ThreadMySoupSetUp()
-html_elements_to_find = thread_my_soup.get_command_line_html_element_args()
-urls_to_search = thread_my_soup.ask_user_for_urls_to_search()
+	element_finder = ElementFinder(
+			html_elements_to_find,
+			urls_to_search
+		)
 
-element_finder = ElementFinder(
-		html_elements_to_find,
-		urls_to_search
-	)
+	element_finder.start_threads()
 
-element_finder.start_threads()

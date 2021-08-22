@@ -24,7 +24,7 @@ class ElementFinder:
         self.lock.acquire()
         
         soup = False
-        soup_result_sets = False
+        soup_result_lists = False
 
         if self.write_url_binary_source_code_to_temp_file(url):
             soup = self.convert_temp_file_to_beautiful_soup_class()

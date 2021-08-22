@@ -30,10 +30,10 @@ class ElementFinder:
             soup = self.convert_temp_file_to_beautiful_soup_class()
 
         if soup:
-            soup_result_sets = self.find_and_create_list_html_elements(soup)
+            soup_result_lists = self.find_html_elements_and_create_result_lists(soup)
 
-        if soup_result_sets:
-            self.append_to_results_file(soup_result_sets)
+        if soup_result_lists:
+            self.append_to_results_file(soup_result_lists)
 
         self.lock.release()
 
@@ -60,20 +60,20 @@ class ElementFinder:
             print("Could not retrieve elements.")
             return False
 
-    def find_and_create_list_html_elements(self, soup):
-        soup_result_sets = list()
+    def find_html_elements_and_create_result_lists(self, soup):
+        soup_result_lists = list()
 
         try:
             for element in self.html_elements_to_find:
-                soup_result_sets.append(soup.find_all(element))
-            return soup_result_sets
+                soup_result_lists.append(soup.find_all(element))
+            return soup_result_lists
         except:
             print("Could not retrieve html elements")
             return False
 
-    def append_to_results_file(self, soup_result_sets):
+    def append_to_results_file(self, soup_result_lists):
         with open("results.txt", "a") as file:
-            for result_set in soup_result_sets:
+            for result_set in soup_result_lists:
                 for el in result_set:
                     file.write(str(el) + "\n\n")
             file.write("==== END OF URL ====\n\n")

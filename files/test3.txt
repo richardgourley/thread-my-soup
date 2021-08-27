@@ -1,7 +1,7 @@
 <h4 class="text-primary">File 3 - Hello there. Bob is my name.</h4>
 <h5 class="text-primary">File 3 - Hello there. Tina is my name.</h5>
 
-<link rel="stylesheet" href="/static/CACHE/css/output.f4c00b4e56ff.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 
 <ul>
 	<li><a href="/properties">File 3 - Properties</a></li>

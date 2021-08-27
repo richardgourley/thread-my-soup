@@ -1,0 +1,3 @@
+<h2 class="text-primary">File 2 - Hello there. Bob is my name.</h2>
+<h3 class="text-primary">File 2 - Hello there. Tina is my name.</h3>
+<p class="text-secondary">File 2 - Hello there. Tina is my name.</p>

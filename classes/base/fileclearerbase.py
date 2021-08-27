@@ -1,5 +1,5 @@
 class FileClearerBase:
-    def __init__():
+    def __init__(self):
         pass
 
     def clear_results_file(self, results_file_name):

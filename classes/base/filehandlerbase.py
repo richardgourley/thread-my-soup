@@ -24,6 +24,7 @@ class FileHandlerBase:
         except:
             return False
 
+    ## Finder methods
     def find_html_elements(self, soup, html_elements_to_find):
         soup_result_lists = list()
 
@@ -34,10 +35,44 @@ class FileHandlerBase:
         except:
             return False
 
-    def append_to_results_file(self, results_file_name, soup_result_lists):
+    def find_words(self, soup, words_to_find):
+        soup_result_lists = list()
+
+        try:
+            for word in words_to_find:
+                updated_soup_list = list()
+                soup_list = soup.find_all()
+                for line in soup_list:
+                    if word in line.getText():
+                        updated_soup_list.append(line)
+                soup_result_lists.append(updated_soup_list)
+            return soup_result_lists
+        except:
+            return False
+
+    def find_ids_or_classes(self, soup, ids_or_classes_to_find):
+        soup_result_lists = list()
+
+        try:
+            for item in ids_or_classes_to_find:
+                soup_result_lists.append(soup.find_all(id=item))
+                soup_result_lists.append(soup.find_all(class_=item))
+            return soup_result_lists
+        except:
+            return False
+
+    ## Append to results.txt methods
+    def append_url_results(self, results_file_name, result_lists, url):
         with open(results_file_name, "a") as file:
-            for result_set in soup_result_lists:
+            for result_set in result_lists:
                 for el in result_set:
                     file.write(str(el) + "\n\n")
-            file.write("==== END OF URL ====\n\n")
+            file.write(f"==== END OF URL: {url} ====\n\n")
+
+    def append_file_results(self, results_file_name, result_lists, file_name):
+        with open(results_file_name, "a") as file:
+            for result_set in result_lists:
+                for el in result_set:
+                    file.write(str(el) + "\n\n")
+            file.write(f"==== END OF {file_name} ====\n\n")
 

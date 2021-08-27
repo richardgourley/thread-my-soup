@@ -9,5 +9,3 @@ class UrlInputs(UserInputBase):
 			enter_input_message,
 			blank_input_message 
 		)
-
-		

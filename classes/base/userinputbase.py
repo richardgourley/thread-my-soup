@@ -24,3 +24,32 @@ class UserInputBase:
 			inputs.append(user_input)
 
 		return inputs
+
+	def ask_user_for_preference(self, preferences, question):
+		choice = None
+
+		choice_valid = False
+
+		while choice_valid == False:
+			print(question)
+
+			for preference in preferences:
+				print(preference)
+
+			user_input = input()
+
+			if user_input == "":
+				print("Preference can't be blank.")
+				continue
+
+			if not user_input in preferences:
+				print("Sorry please only type one of the preferences below.")
+				continue
+
+			if user_input in preferences:
+				choice = "user_input"
+				choice_valid = True
+				continue
+
+		print("YOU HAVE CHOSEN: ", user_input)
+		return user_input

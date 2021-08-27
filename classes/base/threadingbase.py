@@ -5,10 +5,15 @@ class ThreadingBase:
         self.lock = Lock()
 
     def start_threads(self, func, urls_or_files):
-        threads = [Thread(target=func, args=(item,)) for item in urls_or_files]
+        if urls_or_files is None:
+            print("No urls or files to search.")
+            quit()
 
-        for thread in threads:
-            thread.start()
+        if not urls_or_files is None:
+            threads = [Thread(target=func, args=(item,)) for item in urls_or_files]
 
-        for thread in threads:
-            thread.join()
+            for thread in threads:
+                thread.start()
+
+            for thread in threads:
+                thread.join()

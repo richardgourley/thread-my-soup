@@ -1,30 +1,33 @@
 # Thread My Soup
 
 ## INTRO
-This handy tool lets users retrieve any html tags or elements from any number of their web pages into one easy to browse file.
+This handy tool lets users retrieve and inspect any html tags or elements from either their website urls or from a file directory of html pages. 
 
-Imagine if you needed to check all h1, p, link or ul tags across numerous pages. Doing this manually would take time.  This tool allows you to target specific tags and elements from multiple pages on your websites and inspect them from one file, with a divider between urls.
+The tool also provides a menu that lets the user choose to search for all instances of an html tag or element, all instances of a class or an id, or the user can search for a specific word of phrase.
 
 ## FEATURES
-### Adaptable
-### Base classes
-- The main classes are called in the 'threadmysoup.py'
-- The main classes all inherit from one or more base classes.
-- The program can be changed by editing the main classes but keeping the base classes as they are.
-- The program could be adapted to check html files in a dir instead of your live websites.
-- The program could be changed to check ids or classes instead of html tags.
-
 ### Menu
-- The user can enter ANY number of html tags and elements - h1,h2,p,a,ul,link,style etc.
-- The user can enter as many urls as they like from their websites that they would like to view how the html tags look.
+- Args - the first menu allows the user to run the program with args to search words, search for classes or ids or search for specific html tags or elements.
+- The second part of the menu lets the user enter multiple words, classes or tags to search for.
+- The final part of the menu asks the user to search through files or urls and then either prompts the user to ensure they have files in the 'files' dir or prompts the user to enter mutiple urls to search.
+
+### Adaptability
+### Base classes (inheritance)
+- The 'MenuInputs' and 'UrlInputs' classes inherit from the 'UrlInputBase' class.
+
+### Helper classes (composition)
+- Instances of the helper classes are all created and used by the 'FileSearcher', 'UrlSearcher' and 'Args' classes.
+- Methods from the helper classes 'ElementFinder', 'ThreadStarter' and 'UrlHandler' are used in multiple classes allowing for code re-use.
+
+- The idea was to use composition and allow the helper classes to be used in a loosely coupled relationship.
 
 ### Search
 - The search utilizes threading to search multiple urls at the same time.
 - The search uses the requests and BeautifulSoup libraries.
 
 ### Results File
-- The results file displays all requested html tags with all ids and classes displayed.
-- There is a ===END OF URL=== marking to separate url results.
+- A time and date stamped results file is added to a 'results' directory after every search.
+- There is a ===END OF URL=== or a ==== END OF FILE==== marking to separate results from each url or file.
 
 ## SCREENSHOTS
 
@@ -37,18 +40,21 @@ Imagine if you needed to check all h1, p, link or ul tags across numerous pages.
 ![resultspage](https://github.com/richardgourley/thread-my-soup/blob/main/screenshots/threadmysoupresults.png)
 
 ## GETTING STARTED
-Navigate to the main directory 'thread-my-soup'.
+Navigate to the main directory 'thread-my-soup'. Enter the line below to see the initial menu options.
 
-The program is started by entering the main program file and any number of html tags:
 ```
-python3 threadmysoup.py p
-python3 threadmysoup.py h1 p a
-python3 threadmysoup.py link meta title p h4
-python3 threadmysoup.py li section
-```
-The program then prompts you to enter as many of your website urls as you would like to search.
+python3 threadmysoup.py 
 
-A temp file is created for each url before all requested html tags and elements appear in a 'results.txt' file.
+You need to run'threadmysoup.py' + 1 of the following menu options
+EXAMPLES:
+threadmysoup.py searchwords (find any words in the text)
+threadmysoup.py searchidsorclasses (find elements with specific ids or classes)
+threadmysoup.py searchhtmltags (find all html tags)
+
+```
+The program then prompts you to enter either multiple words, ids and classes or html tags or element names to search depending on menu selection.
+
+The final menu asks you if you want to search files or urls and prompts you to enter or ensure files are present or enter multiple urls to search.
 
 ## TESTING
 To run the tests in the 'tests' directory, from the main directory where 'threadmysoup.py' lives, run:

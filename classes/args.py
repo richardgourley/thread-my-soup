@@ -1,26 +1,26 @@
-from classes.helper.commandlineargsbase import CommandLineArgsBase
+from classes.helper.commandlineargs import CommandLineArgs
 
-class Args(CommandLineArgsBase):
+class Args:
 	def __init__(self):
-		pass
+		self.command_line_args = CommandLineArgs()
 
 	def return_args(self):
-		command_line_args = self.get_command_line_args()
+		args = self.command_line_args.get_command_line_args()
 
 		menu_args = ["searchwords", "searchidsorclasses", "searchhtmltags"]
 
-		if len(command_line_args) == 0:
+		if len(args) == 0:
 			self.args_incorrect_message()
 			quit()
 
-		if len(command_line_args) > 1:
+		if len(args) > 1:
 			self.args_incorrect_message()
 			quit()
 
-		if len(command_line_args) == 1 and command_line_args[0] in menu_args:
-			print(f"You have chosen to {command_line_args[0]}")
+		if len(args) == 1 and args[0] in menu_args:
+			print(f"You have chosen to {args[0]}")
 
-		return command_line_args
+		return args
 
 	def args_incorrect_message(self):
 		print("You need to run'threadmysoup.py' + 1 of the following menu options")

@@ -1,4 +1,4 @@
-from classes.base.commandlineargsbase import CommandLineArgsBase
+from classes.helper.commandlineargsbase import CommandLineArgsBase
 
 class Args(CommandLineArgsBase):
 	def __init__(self):

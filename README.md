@@ -1,9 +1,11 @@
 # Thread My Soup
 
 ## INTRO
-This handy tool lets users retrieve and inspect any html tags or elements from either their website urls or from a file directory of html pages. 
+This handy tool lets users search for words or phrases, class or ids and search for and retrieve any html element in urls from their live websites or from any number of html files, via the requests, Beautiful Soup and Threading modules.
 
-The tool also provides a menu that lets the user choose to search for all instances of an html tag or element, all instances of a class or an id, or the user can search for a specific word of phrase.
+The program runs from args, then offers search options and an option to choose to search urls or files to retrieve html elements. 
+
+All results are saved into the results directory in a timestamped results file.
 
 ## FEATURES
 ### Menu

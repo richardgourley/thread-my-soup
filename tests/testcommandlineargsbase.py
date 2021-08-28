@@ -1,10 +1,10 @@
 import unittest
-from classes.base.commandlineargsbase import CommandLineArgsBase
+from classes.helper.commandlineargs import CommandLineArgs
 
 class UnitTest(unittest.TestCase):
     @classmethod
     def setUp(self):
-    	self.command_line_args_base = CommandLineArgsBase()
+    	self.command_line_args = CommandLineArgs()
 
     def test_has_get_command_line_args(self):
         self.assertTrue(hasattr(self.command_line_args_base, "get_command_line_args"))

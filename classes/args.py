@@ -33,8 +33,8 @@ class Args:
             self.args_incorrect_message()
             quit() 
 
-        print(menu_option["full_name"])
-
+        print(f"You have chosen to: {menu_option['full_name']}")
+        
         return args
 
     def get_menu_option(self, arg, menu_options):

@@ -5,9 +5,25 @@ class Args:
 		self.command_line_args = CommandLineArgs()
 
 	def return_args(self):
+		# removes 1st element - file name arg
 		args = self.command_line_args.get_command_line_args()
 
 		menu_args = ["searchwords", "searchidsorclasses", "searchhtmltags"]
+
+		menu_args = {
+			{
+				"arg":"searchwords",
+				"full_name":"search for words"
+			},
+			{
+				"arg":"searchidsorclasses",
+				"full_name":"search ids or classes"
+			},
+			{
+				"arg":"searchhtmltags",
+				"full_name":"search html tags"
+			},
+		}
 
 		if len(args) == 0:
 			self.args_incorrect_message()

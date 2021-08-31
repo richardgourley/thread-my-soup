@@ -13,7 +13,6 @@ All results are saved into the results directory in a timestamped results file.
 - The second part of the menu lets the user enter multiple words, classes or tags to search for.
 - The final part of the menu asks the user to search through files or urls and then either prompts the user to ensure they have files in the 'files' dir or prompts the user to enter mutiple urls to search.
 
-### Adaptability
 ### Base classes (inheritance)
 - The 'MenuInputs' and 'UrlInputs' classes inherit from the 'UrlInputBase' class.
 
@@ -22,6 +21,12 @@ All results are saved into the results directory in a timestamped results file.
 - Methods from the helper classes 'ElementFinder', 'ThreadStarter' and 'UrlHandler' are used in multiple classes allowing for code re-use.
 
 - The idea was to use composition and allow the helper classes to be used in a loosely coupled relationship.
+
+### Extendable
+ A new search option could be added to the project.
+- A new menu option could be added to the 'ItemInputs' class.
+- A new search method could be added to the 'ElementRetriever' class.
+- The new method from 'ElementRetriever' could be added to the search method of the 'UrlSearcher' and 'FileSearcher' classes.
 
 ### Search
 - The search utilizes threading to search multiple urls at the same time.

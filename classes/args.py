@@ -4,7 +4,7 @@ class Args:
     def __init__(self):
         self.command_line_args = CommandLineArgs()
 
-    def return_args(self):
+    def filter_args(self):
         # removes 1st element - file name arg
         args = self.command_line_args.get_command_line_args()
 

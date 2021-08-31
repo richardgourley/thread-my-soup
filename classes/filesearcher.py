@@ -8,15 +8,20 @@ class FileSearcher:
         self.file_handler = FileHandler()
         self.thread_starter = ThreadStarter()
         self.element_finder = ElementFinder()
-        self.add_files_message()
+
+        self.print_add_files_message()
         self.files = self.file_handler.return_files_or_close_program()
+
         self.menu_option = menu_option
         self.items_to_search_for = items_to_search_for
 
-        self.thread_starter.start_threads(self.search, self.files)
-        self.search_finished_message()
+        self.file_handler.check_exists_or_make_results_dir()
+        self.results_file_name = self.file_handler.create_timestamped_results_file()
 
-    def add_files_message(self):
+        self.thread_starter.start_threads(self.search, self.files)
+        self.print_search_finished_message()
+
+    def print_add_files_message(self):
         print("Add any html files you want to search through to the files directory in this directory.")
         print("Press any key when you are ready!")
         any_key = input()
@@ -50,10 +55,10 @@ class FileSearcher:
             self.thread_starter.lock.release()
             return
                         
-        self.file_handler.append_file_results(result_lists, file_name)
+        self.file_handler.append_file_results(result_lists, file_name, self.results_file_name)
 
         self.thread_starter.lock.release()
 
-    def search_finished_message(self):
+    def print_search_finished_message(self):
         print("Finished. You can find the results in a time stamped results file in the 'results' directory.")
 

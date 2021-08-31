@@ -12,8 +12,11 @@ class UrlSearcher():
         self.urls = urls
         self.file_handler.clear_temp_file()
 
+        self.file_handler.check_exists_or_make_results_dir()
+        self.results_file_name = self.file_handler.create_timestamped_results_file()
+
         self.thread_starter.start_threads(self.search, self.urls)
-        self.search_finished_message()
+        self.print_search_finished_message()
 
     # Passed to start_threads in __init__
     def search(self, url):
@@ -47,9 +50,9 @@ class UrlSearcher():
             self.thread_starter.lock.release()
             return
 
-        self.file_handler.append_url_results(result_lists, url)
+        self.file_handler.append_url_results(result_lists, url, self.results_file_name)
 
         self.thread_starter.lock.release()
 
-    def search_finished_message(self):
+    def print_search_finished_message(self):
         print("Finished. You can find the results in a time stamped results file in the 'results' directory.")

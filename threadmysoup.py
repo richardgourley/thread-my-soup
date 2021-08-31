@@ -6,8 +6,8 @@ from classes.urlsearcher import UrlSearcher
 
 if __name__ == "__main__":
 	args = Args()
-	return_args = args.return_args()
-	menu_option = return_args[0]
+	filtered_args= args.filter_args()
+	menu_option = filtered_args[0]
 
 	item_inputs = ItemInputs(menu_option)
 	items_to_search_for = item_inputs.ask_user_for_inputs()

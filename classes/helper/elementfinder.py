@@ -18,12 +18,12 @@ class ElementFinder:
 
         try:
             for word in words_to_find:
-                updated_soup_list = list()
-                soup_list = soup.find_all()
-                for line in soup_list:
-                    if word in line.getText():
-                        updated_soup_list.append(line)
-                soup_result_lists.append(updated_soup_list)
+                word_soup_list = list()
+                soup_list = soup.find_all(['p','a','ul','li','h1','h2','h3','h4','h5'])
+                for tag in soup_list:
+                    if word in tag.get_text():
+                        word_soup_list.append(tag)
+                soup_result_lists.append(word_soup_list)
             return soup_result_lists
         except:
             return False

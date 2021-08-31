@@ -27,26 +27,24 @@ class FileHandler:
             return False
 
     ## Append to results.txt methods
-    def append_url_results(self, result_lists, url):
-        self.check_exists_or_make_results_dir()
-        with open(self.create_results_plus_date_file_name(), "a") as file:
+    def append_url_results(self, result_lists, url, results_file_name):
+        with open(results_file_name, "a") as file:
             for result_set in result_lists:
                 for el in result_set:
                     file.write(str(el) + "\n\n")
             file.write(f"==== END OF URL: {url} ====\n\n")
 
-    def append_file_results(self, result_lists, file_name):
-        self.check_exists_or_make_results_dir()
-        with open(self.create_results_plus_date_file_name(), "a") as file:
+    def append_file_results(self, result_lists, file_name, results_file_name):
+        with open(results_file_name, "a") as file:
             for result_set in result_lists:
                 for el in result_set:
                     file.write(str(el) + "\n\n")
             file.write(f"==== END OF {file_name} ====\n\n")
 
     ## Creates results file, create results dir if required
-    def create_results_plus_date_file_name(self):
+    def create_timestamped_results_file(self):
         date_now = datetime.now()
-        results_file = f"results/results_{date_now.month}_{date_now.day}_{date_now.year}_{date_now.hour}:{date_now.minute}.txt"
+        results_file = f"results/results_{date_now.month}_{date_now.day}_{date_now.year}_{date_now.hour}:{date_now.minute}.{date_now.second}.txt"
         return results_file
 
     def check_exists_or_make_results_dir(self):
@@ -65,7 +63,7 @@ class FileHandler:
             files = os.listdir(directory)
         except:
             print("Couldn't find directory called files. We have created one. Please add files and run program again.")
-            os.mkdir('trees')
+            os.mkdir('files')
             quit()
 
         if len(files) == 0:

@@ -21,8 +21,9 @@ class ElementFinder:
                 word_soup_list = list()
                 soup_list = soup.find_all(['p','a','ul','li','h1','h2','h3','h4','h5'])
                 for tag in soup_list:
-                    if word in tag.get_text():
-                        word_soup_list.append(tag)
+                    tag_text = tag.get_text()
+                    if word in tag_text:
+                        word_soup_list.append(tag_text)
                 soup_result_lists.append(word_soup_list)
             return soup_result_lists
         except:

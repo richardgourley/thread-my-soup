@@ -1,9 +1,7 @@
 # Thread My Soup
 
 ## INTRO
-This handy tool lets users search for words or phrases, class or ids and search for and retrieve any html element in urls from their live websites or from any number of html files, via the requests, Beautiful Soup and Threading modules.
-
-The program runs from args, then offers search options and an option to choose to search urls or files to retrieve html elements. 
+This handy tool lets users search for words or phrases, class or ids and search for and retrieve any html element in urls from their live websites or from any number of html files, using the requests, Beautiful Soup and Threading modules.
 
 All results are saved into the results directory in a timestamped results file.
 
@@ -11,22 +9,28 @@ All results are saved into the results directory in a timestamped results file.
 ### Menu
 - Args - the first menu allows the user to run the program with args to search words, search for classes or ids or search for specific html tags or elements.
 - The second part of the menu lets the user enter multiple words, classes or tags to search for.
-- The final part of the menu asks the user to search through files or urls and then either prompts the user to ensure they have files in the 'files' dir or prompts the user to enter mutiple urls to search.
+- The final part of the menu asks the user to search through files or urls and then either prompts the user to ensure they have files in the 'files' dir or prompts the user to enter mutiple urls to search through.
 
 ### Base classes (inheritance)
-- The 'MenuInputs' and 'UrlInputs' classes inherit from the 'UrlInputBase' class.
+- The 'MainInputsMenu' and 'UrlInputsMenu' classes inherit from the 'UrlInputBase' class.
 
 ### Helper classes (composition)
 - Instances of the helper classes are all created and used by the 'FileSearcher', 'UrlSearcher' and 'Args' classes.
-- Methods from the helper classes 'ElementFinder', 'ThreadStarter' and 'UrlHandler' are used in multiple classes allowing for code re-use.
+- Methods from the helper classes 'ElementFinder', 'ThreadStarter', 'CommandLineArgs' and 'UrlHandler' are used in multiple classes allowing for code re-use.
 
-- The idea was to use composition and allow the helper classes to be used in a loosely coupled relationship.
+- The idea is to allow extension of the program by having loosely coupled relationships between classes.
 
 ### Extendable
- A new search option could be added to the project.
-- A new menu option could be added to the 'ItemInputs' class.
-- A new search method could be added to the 'ElementRetriever' class.
-- The new method from 'ElementRetriever' could be added to the search method of the 'UrlSearcher' and 'FileSearcher' classes.
+The program can be extended to add a new menu option and a search html method added by extending:
+- Args
+  - A new args menu option can be added to the 'menu_options' dictionary
+
+- ElementFinder 
+  - A new method can be added to retrieve any type of filtered results from an html page or file.
+
+- MainInputsMenu
+  - The new menu option can be added to the init method.
+  - The new menu option can be updated in the 'get_result_lists_based_on_menu_option' method.
 
 ### Search
 - The search utilizes threading to search multiple urls at the same time.

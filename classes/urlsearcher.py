@@ -1,13 +1,13 @@
 from classes.helper.filehandler import FileHandler
 from classes.helper.threadstarter import ThreadStarter
-from classes.helper.elementfinder import ElementFinder
 
 class UrlSearcher():
-    def __init__(self, menu_option, items_to_search_for, urls):
+    def __init__(self, main_inputs_menu, items_to_search_for, urls):
         self.file_handler = FileHandler()
         self.thread_starter = ThreadStarter()
-        self.element_finder = ElementFinder()
-        self.menu_option = menu_option
+        
+        self.main_inputs_menu = main_inputs_menu
+
         self.items_to_search_for = items_to_search_for
         self.urls = urls
         self.file_handler.clear_temp_file()
@@ -38,12 +38,7 @@ class UrlSearcher():
             self.thread_starter.lock.release()
             return
 
-        if self.menu_option == "searchwords":
-            result_lists = self.element_finder.find_words(soup, self.items_to_search_for)
-        elif self.menu_option == "searchidsorclasses":
-            result_lists = self.element_finder.find_ids_or_classes(soup, self.items_to_search_for)
-        else:
-            result_lists = self.element_finder.find_html_elements(soup, self.items_to_search_for)
+        result_lists = self.main_inputs_menu.get_result_lists_based_on_menu_option(soup, self.items_to_search_for)
 
         if result_lists == False:
             print(f"Could not create result lists for this url: {url}")

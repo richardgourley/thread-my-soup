@@ -1,18 +1,17 @@
 from classes.helper.filehandler import FileHandler
 from classes.helper.threadstarter import ThreadStarter
-from classes.helper.elementfinder import ElementFinder
 import os
 
 class FileSearcher:
-    def __init__(self, menu_option, items_to_search_for):
+    def __init__(self, main_inputs_menu, items_to_search_for):
         self.file_handler = FileHandler()
         self.thread_starter = ThreadStarter()
-        self.element_finder = ElementFinder()
+
+        self.main_inputs_menu = main_inputs_menu
 
         self.print_add_files_message()
         self.files = self.file_handler.return_files_or_close_program()
 
-        self.menu_option = menu_option
         self.items_to_search_for = items_to_search_for
 
         self.file_handler.check_exists_or_make_results_dir()
@@ -42,13 +41,8 @@ class FileSearcher:
             print(f"Could not retrieve data from {file_name} file.")
             self.thread_starter.lock.release()
             return
-                        
-        if self.menu_option == "searchwords":
-            result_lists = self.element_finder.find_words(soup, self.items_to_search_for)
-        elif self.menu_option == "searchidsorclasses":
-            result_lists = self.element_finder.find_ids_or_classes(soup, self.items_to_search_for)
-        else:
-            result_lists = self.element_finder.find_html_elements(soup, self.items_to_search_for)
+
+        result_lists = self.main_inputs_menu.get_result_lists_based_on_menu_option(soup, self.items_to_search_for)
 
         if result_lists == False:
             print(f"Could not retrieve items from this file: {file}")

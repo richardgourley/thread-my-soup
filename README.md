@@ -8,7 +8,7 @@ All results are saved into the results directory in a timestamped results file.
 ## FEATURES
 ### Menu
 - Args - the first menu allows the user to run the program with args to search words, search for classes or ids or search for specific html tags or elements.
-- The second part of the menu lets the user enter multiple words, classes or tags to search for.
+- The second part of the menu asks the user to enter inputs to search for, based upon their choice from the main args menu above.
 - The final part of the menu asks the user to search through files or urls and then either prompts the user to ensure they have files in the 'files' dir or prompts the user to enter mutiple urls to search through.
 
 ### Base classes (inheritance)

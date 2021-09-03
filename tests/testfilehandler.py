@@ -9,7 +9,11 @@ class UnitTest(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.file_handler = FileHandler()
-        self.unittest_file = "tests/unittest.html"
+        self.unittest_file = 'tests/unittest.html'
+        with open(self.unittest_file, 'w') as file:
+            file.write(
+                "<p class='text-secondary'>Hello, world!</p>\n<ul><li>Section 1</li></ul>"
+            )
 
     def test_parse_file_returns_beautifulsoup_instance(self):
         soup = self.file_handler.parse_file(self.unittest_file)

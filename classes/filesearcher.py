@@ -21,7 +21,8 @@ class FileSearcher:
         self.print_search_finished_message()
 
     def print_add_files_message(self):
-        print("Add any html files you want to search through to the files directory in this directory.")
+        print("We will search through any html files in the 'files' directory AND any sub-directories.")
+        print("Please add any of your website projects directories to the files directory.")
         print("Press any key when you are ready!")
         any_key = input()
 

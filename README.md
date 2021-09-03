@@ -63,9 +63,6 @@ threadmysoup.py searchidsorclasses (find elements with specific ids or classes)
 threadmysoup.py searchhtmltags (find all html tags)
 
 ```
-The program then prompts you to enter either multiple words, ids and classes or html tags or element names to search depending on menu selection.
-
-The final menu asks you if you want to search files or urls and prompts you to enter or ensure files are present or enter multiple urls to search.
 
 ## TESTING
 To run the tests in the 'tests' directory, from the main directory where 'threadmysoup.py' lives, run:

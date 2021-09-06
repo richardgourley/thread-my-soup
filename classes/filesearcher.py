@@ -3,14 +3,20 @@ from classes.helper.threadstarter import ThreadStarter
 import os
 
 class FileSearcher:
-    def __init__(self, main_inputs_menu, items_to_search_for):
+    def __init__(self, main_inputs_menu, items_to_search_for, directory_to_search="files directory"):
         self.file_handler = FileHandler()
         self.thread_starter = ThreadStarter()
+
+        self.directory_to_search = directory_to_search
 
         self.main_inputs_menu = main_inputs_menu
 
         self.print_add_files_message()
-        self.files = self.file_handler.return_files_or_close_program()
+
+        if directory_to_search == "files":
+            self.files = self.file_handler.return_files_from_files_dir_or_close_program()
+        else:
+            self.files = self.file_handler.return_files_from_other_dir_or_close_program(self.directory_to_search)
 
         self.items_to_search_for = items_to_search_for
 
@@ -21,8 +27,8 @@ class FileSearcher:
         self.print_search_finished_message()
 
     def print_add_files_message(self):
-        print("We will search through any html files in the 'files' directory AND any sub-directories.")
-        print("Please add any of your website projects directories to the files directory.")
+        print(f"\nWe will search through any html files found in the directory called '{self.directory_to_search}' AND any sub-directories.")
+        print(f"Please check your website project files and directories are in the directory: '{self.directory_to_search}'.")
         print("Press any key when you are ready!")
         any_key = input()
 
@@ -30,16 +36,15 @@ class FileSearcher:
     def search(self, file):
         self.thread_starter.lock.acquire()
 
-        file_name = os.path.join("files", file)
-        if os.path.isfile(file_name) == False:
+        if os.path.isfile(file) == False:
             print(f"{file} is not a valid file. Unable to open.")
             self.thread_starter.lock.release()
             return
    
-        soup = self.file_handler.parse_file(file_name)
+        soup = self.file_handler.parse_file(file)
         
         if soup == False:
-            print(f"Could not retrieve data from {file_name} file.")
+            print(f"Could not retrieve data from {file} file.")
             self.thread_starter.lock.release()
             return
 
@@ -50,7 +55,7 @@ class FileSearcher:
             self.thread_starter.lock.release()
             return
                         
-        self.file_handler.append_file_results(result_lists, file_name, self.results_file_name)
+        self.file_handler.append_file_results(result_lists, file, self.results_file_name)
 
         self.thread_starter.lock.release()
 

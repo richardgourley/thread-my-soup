@@ -56,21 +56,58 @@ class FileHandler:
             quit()
 
     ## Returns files to FileSearcher class or exits program.
-    def return_files_or_close_program(self):
-        directory = 'files'
-        files = []
+    def return_files_from_files_dir_or_close_program(self):
+        output_files = []
+
         try:
-            files = os.listdir(directory)
+            current_dir = os.getcwd()
+            search_dir = os.path.join(current_dir, 'files')
+
+            for main_dir, sub_dir, files in os.walk(search_dir):
+                for file in files:
+                    try:
+                        name, extension = os.path.splitext(file)
+                        if extension == ".html":
+                            file_address = f"{main_dir}/{file}"
+                            output_files.append(file_address)
+                    except:
+                        pass
         except:
-            print("Couldn't find directory called files. We have created one. Please add files and run program again.")
+            print("Couldn't find directory called files. We have created one. Please add files and/ or directories to 'files' and run the program again.")
             os.mkdir('files')
             quit()
 
-        if len(files) == 0:
-            print("We could't find any files in the 'files' directory. Please add files and try again.")
+        if len(output_files) == 0:
+            print(f"We could't find any html files in the 'files' directory. Please check there are files and directories with html files and try again.")
             quit()
 
-        return files
+        return output_files
+
+    def return_files_from_other_dir_or_close_program(self, directory_to_search):
+        output_files = []
+
+        try:
+            search_dir = os.path.relpath(directory_to_search)
+
+            for main_dir, sub_dir, files in os.walk(search_dir):
+                for file in files:
+                    try:
+                        name, extension = os.path.splitext(file)
+                        if extension == ".html":
+                            file_address = f"{main_dir}/{file}"
+                            print(file_address)
+                            output_files.append(file_address)
+                    except:
+                        pass
+        except:
+            print(f"Couldn't find directory called {directory_to_search}.Please check the directory address is correct and run the program again.")
+            quit()
+
+        if len(output_files) == 0:
+            print(f"We could't find any html files in the {directory_to_search} directory. Please check the directory address is correct and that there are files and directories with html files inside and try again.")
+            quit()
+
+        return output_files
 
     def clear_temp_file(self):
         with open("temp.txt", "w") as file:

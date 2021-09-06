@@ -29,6 +29,16 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(soup_result_list[1][0].get_text(), 'Section 1')
         self.assertEqual(soup_result_list[1][0].name, 'li')
 
+    # if html_elements_to_find is not iterable 
+    def test_find_html_elements_returns_false(self):
+        soup = None
+        with open(self.unittest_file, 'r') as file:
+            soup = BeautifulSoup(file.read(), "html.parser")
+        html_elements_to_find = 34.5
+        soup_result_list = self.element_finder.find_html_elements(soup, html_elements_to_find)
+        print(soup_result_list)
+        self.assertEqual(soup_result_list, False)
+
 
 
 

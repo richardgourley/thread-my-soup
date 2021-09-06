@@ -25,6 +25,25 @@ class UserInputBase:
 
 		return inputs
 
+	# returns only one results
+	def ask_user_for_input(self):
+		single_input = ""
+
+		still_entering_input = True
+
+		while still_entering_input:
+			print(self.enter_input_message)
+			user_input = input()
+
+			if user_input == "":
+				print(self.blank_input_message)
+				continue
+
+			single_input = user_input
+			still_entering_input = False
+
+		return single_input
+
 	def ask_user_for_preference(self, preferences, question):
 		choice = None
 

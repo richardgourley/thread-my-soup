@@ -1,9 +1,6 @@
 from classes.args import Args
-from classes.maininputsmenu import MainInputsMenu
 from classes.userinput import UserInput
-from classes.directoryinputsmenu import DirectoryInputsMenu
 from classes.filesearcher import FileSearcher
-from classes.urlsearcher import UrlSearcher
 from classes.helper.elementfinder import ElementFinder
 
 if __name__ == "__main__":
@@ -29,7 +26,7 @@ if __name__ == "__main__":
 		{
 			'arg_name':'searchhtmltags',
 			'arg_full_name':'Search HTML tags',
-			'arg_menu_description':'(find all matching html tags)'
+			'arg_menu_description':'(find all matching html tags)',
 			'enter_input_message':"Enter an html tag to search for. Press 'Q' or 'q' to stop entering html elements.",
 			'blank_input_message':"The html tag name you enter cannot be blank.",
 			'search_function':element_finder.find_html_elements

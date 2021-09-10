@@ -37,11 +37,11 @@ if __name__ == "__main__":
 	args = Args(menu_options)
 	menu_option = args.return_menu_option_or_print_args_incorrect()
 
-	# Which items to search
+	# User inputs words, ids, classes or html tags to search
 	user_input = UserInput(menu_option)
 	items_to_search_for = user_input.ask_user_for_inputs()
 
-	# Option - Search the 'files' dir OR traverse another directory
+	# User chooses which directory to traverse - 'files' dir OR another directory
 	search_files_dir_or_other_dir = user_input.ask_user_for_preference(
 		["files", "other"], 
 		"Enter an option below - would you like to search through all files and sub-directories in the 'files' directory or search through a different directory on your system?\nEnter 'files directory or 'other directory'"

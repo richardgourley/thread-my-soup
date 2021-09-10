@@ -20,7 +20,7 @@ class FileHandler:
 
     def parse_file(self, file_name):
         try:
-            with open(file_name, 'r') as file:
+            with open(file_name, "r") as file:
                 soup = BeautifulSoup(file.read(), "html.parser")
                 return soup
         except:
@@ -112,4 +112,5 @@ class FileHandler:
     def clear_temp_file(self):
         with open("temp.txt", "w") as file:
             file.write("")
+
 

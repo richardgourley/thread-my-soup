@@ -4,6 +4,7 @@
 This handy tool lets users search for and retrieve elements containing multiple words or phrases, multiple classes or ids and multiple html elements from any number of html files, using the Beautiful Soup and Threading modules.
 
 Imagine you wanted to traverse through the directory storing all of your web development projects to check a specific html element, or to check the spelling of a word, such as an address or customer name, or even to inspect all elements that have a specific id or class name. 
+
 This program helps you to find specific items from a large number of html files by traversing large directories on your system.
 
 All results are saved into the results directory in a timestamped results file.

@@ -1,20 +1,21 @@
 # Thread My Soup
 
 ## INTRO
-This handy tool lets users search for and retrieve words or phrases, classes or ids and any html elements from any number of html files, using the Beautiful Soup and Threading modules.
+This handy tool lets users search for and retrieve elements containing multiple words or phrases, multiple classes or ids and multiple html elements from any number of html files, using the Beautiful Soup and Threading modules.
 
-Imagine you wanted to traverse through the directory storing all of your web development projects checking a specific html element, checking the spelling of a word, such as an address or customer name, or even inspecting elements with a specific id or class name. This program helps you to find specific elements from a large number of files by traversing large directories on your system.
+Imagine you wanted to traverse through the directory storing all of your web development projects to check a specific html element, or to check the spelling of a word, such as an address or customer name, or even to inspect all elements that have a specific id or class name. 
+This program helps you to find specific items from a large number of html files by traversing large directories on your system.
 
 All results are saved into the results directory in a timestamped results file.
 
 ## FEATURES
 ### Menu
-- Args - the first menu allows the user to run the program with args to search words, search for classes or ids or search for specific html tags or elements.
-- The second part of the menu asks the user to search through a directory called 'files' or the user can input any file on their system to traverse through every html file looking for the given elements.
-- The final part of the menu asks the user to input the name of any directory on their system that they wish to search through to find elements. 
+- Args - the first menu has arguments, allowing the user to choose to search words, search for classes or ids or search for specific html tags or elements.
+- The second menu screen prompts the user to enter words, class or id names, or html elements.
+- The final part of the menu asks the user where to search - either a directory called 'files' or a directory called 'other'. The user is prompted to enter the location of the directory on their system if 'other' is chosen.
 
 ### Base classes 
-- The 'UserInputBase' class is inherited by the 'UserInput' class which is instantiated in the main 'threadmysoup.py' file, giving the user the menu options required to choose type of search and where to search.
+- The 'UserInputBase' class is inherited by the 'UserInput' class which is instantiated in the main 'threadmysoup.py' file (which gives the user the menu options required to choose type of search and where to search.)
 
 ### Helper classes
 - Instances of the helper classes are all created and used by the 'FileSearcher' and 'Args' classes.
@@ -23,12 +24,10 @@ All results are saved into the results directory in a timestamped results file.
 - The idea is to allow extension of the program by having loosely coupled relationships between classes.
 
 ### Extendable
-The program can be extended to add a new menu option in the 'menu_options' dictionary in the 'thread_soup.py' file.
-A new method can be added to the 'ElementFinder class'. (See below)
+The program can easily be extended to add a new menu option in the 'menu_options' dictionary in the 'thread_soup.py' file.
+A new method using Beautiful Soup can be added to the 'ElementFinder' class and added to a new menu option. (See below)
 
 ![mainmenupage](https://github.com/richardgourley/thread-my-soup/blob/main/screenshots/threadmysoupmainmenu.png)
-
-- The preferences option in 'threadmysoup.py' could easily be extended to use the requests library and find and check elements from the users live websites.
 
 ### Search
 - The search utilizes threading to search multiple urls at the same time.

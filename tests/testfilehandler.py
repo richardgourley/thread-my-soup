@@ -32,17 +32,6 @@ class UnitTest(unittest.TestCase):
         self.assertTrue(str(date_now.day) in results_file)
         self.assertTrue(str(date_now.month) in results_file)
 
-    def test_return_files_or_close_program(self):
-        # make sure 'files' dir exist or program will close on running method
-        directory = 'files'
-        try:
-            files = os.listdir(directory)
-        except:
-            os.mkdir('files')
-            quit()
-        files = self.file_handler.return_files_or_close_program()
-        self.assertEqual(type(files), list)
-
     def test_clear_temp_file_works(self):
         self.file_handler.clear_temp_file()
         opened_file = ""

@@ -43,4 +43,17 @@ class UnitTest(unittest.TestCase):
     def test_has_args_incorrect_message(self):
         self.assertTrue(hasattr(self.args, "args_incorrect_message"))
 
-    
+    # Pass an 'arg_full_name' from menu options in setUp
+    def test_get_menu_option_returns_option_from_menu_options(self):
+        arg = "searchhtmltags"
+        result = self.args.get_menu_option(arg, self.args.options)
+        self.assertEqual(result['arg_full_name'], 'Search HTML tags')
+        self.assertEqual(result['arg_menu_description'], '(find all matching html tags)')
+        self.assertEqual(result['enter_input_message'], "Enter an html tag to search for. Press 'Q' or 'q' to stop entering html elements.")
+
+    def test_get_menu_option_returns_none_for_incorrect_menu_option(self):
+        arg = "hello, world!"
+        result = self.args.get_menu_option(arg, self.args.options)
+        self.assertEqual(result, None)
+
+

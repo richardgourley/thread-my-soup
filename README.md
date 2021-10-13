@@ -47,7 +47,6 @@ All results are saved into the results directory in a timestamped results file.
 ![resultspage](https://github.com/richardgourley/thread-my-soup/blob/main/screenshots/threadmysoupresults.png)
 
 ## GETTING STARTED
-- It's easy to run. 
 - Navigate to the main directory 'thread-my-soup'. Enter the line below to see the initial menu options.
 
 ```

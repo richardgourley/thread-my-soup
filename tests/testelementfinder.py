@@ -3,21 +3,20 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import os
 
-from classes.helper.elementfinder import ElementFinder
+from classes.elementfinder import ElementFinder
 
 class UnitTest(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.element_finder = ElementFinder()
-        self.unittest_file = 'tests/unittest.html'
-        with open(self.unittest_file, 'w') as file:
+        with open('unittest.html', 'w') as file:
             file.write(
                 "<p class='text-secondary'>Hello, world!</p>\n<ul><li>Section 1</li></ul>"
             )
 
     def test_find_html_elements(self):
         soup = None
-        with open(self.unittest_file, 'r') as file:
+        with open('unittest.html', 'r') as file:
             soup = BeautifulSoup(file.read(), "html.parser")
         html_elements_to_find = ['p','li']
         soup_result_list = self.element_finder.find_html_elements(soup, html_elements_to_find)
@@ -30,14 +29,16 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(soup_result_list[1][0].name, 'li')
 
     # if html_elements_to_find is not iterable 
-    def test_find_html_elements_returns_false(self):
+    def test_find_html_elements_returns_none(self):
         soup = None
-        with open(self.unittest_file, 'r') as file:
+        with open('unittest.html', 'r') as file:
             soup = BeautifulSoup(file.read(), "html.parser")
         html_elements_to_find = 34.5
         soup_result_list = self.element_finder.find_html_elements(soup, html_elements_to_find)
-        print(soup_result_list)
-        self.assertEqual(soup_result_list, False)
+        self.assertEqual(soup_result_list, None)
+
+    def tearDown(self):
+        pass
 
 
 
